@@ -10,3 +10,4 @@ Minor Project - Conversion of Images to Editable Documents
   - HTML5 - Markup Language
   - CSS3 - Style Sheet Language 
   - JS ES5 - High-level, Programming Language
+  - Git - Distributed VCS
