@@ -21,6 +21,7 @@ Minor Project - Conversion of Images to Editable Documents
   - Tesseract OCR - Open-Source OCR Engine
   - `pytesseract` - Python Wrapper For Tessract 
   - `python-docx` - Python Library to Create, Read & Write `docx` files
+  - `virtualenv` - Tool to Create Isolated Python Environments
   - Popper - Positioning Engine Written In JavaScript
   - AJAX - Asynchronous JavaScript & XML
   - PIL - Python Image Library
