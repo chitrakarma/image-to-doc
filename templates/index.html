@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ITED</title>
+        <link rel="stylesheet" href="../static/index.css" />
+        <link rel="stylesheet" href="../static/bootstrap.css" />
+    </head>
+    <body>
+        <h1 class="jumbotron text-center main-heading">
+            Images to Editable Documents Converter
+        </h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3 mt-3">
+                        <div class="form-group mb-3">
+                            <div class="custom-file">
+                                <input
+                                    type="file"
+                                    class="custom-file-input"
+                                    id="file-input"
+                                    oninput="inputFilename();"
+                                />
+                                <label
+                                    for="file-input"
+                                    id="file-input-label"
+                                    class="custom-file-label"
+                                ></label>
+                            </div>
+                        </div>
+
+                        <button
+                            onclick="upload('{{ request.url }}')"
+                            id="upload-btn"
+                            class="btn btn-secondary"
+                        >
+                            Upload File
+                        </button>
+                        <button
+                            class="btn btn-secondary d-none"
+                            id="loading-btn"
+                            type="button"
+                            disabled
+                        >
+                            <span
+                                class="spinner-border spinner-border-sm"
+                                role="status"
+                                aria-hidden="true"
+                            >
+                            </span>
+                            Uploading...
+                        </button>
+
+                        <button
+                            class="btn btn-secondary d-none"
+                            id="cancel-btn"
+                            type="button"
+                        >
+                            Cancel Upload
+                        </button>
+                    </div>
+                    <div id="progress-wrapper" class="d-none">
+                        <label id="progress-status">50% Uploaded</label>
+                        <div class="progress mb-3">
+                            <div
+                                id="progress"
+                                class="progress-bar"
+                                role="progressbar"
+                                aria-valuenow="25"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                            ></div>
+                        </div>
+                    </div>
+                    <div id="alert-wrapper"></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const progress = document.querySelector("#progress");
+            const progressWrapper = document.querySelector("#progress-wrapper");
+            const progressStatus = document.querySelector("#progress-status");
+
+            const uploadBtn = document.querySelector("#upload-btn");
+            const loadingBtn = document.querySelector("#loading-btn");
+            const cancelBtn = document.querySelector("#cancel-btn");
+
+            const alertWrapper = document.querySelector("#alert-wrapper");
+
+            const input = document.querySelector("#file-input");
+            const fileInputLabel = document.querySelector("#file-input-label");
+
+            const showAlert = (message, alert) => {
+                alertWrapper.innerHTML = `
+                    <div class="alert alert-${alert} alert-dismissible fade show" role="alert">
+                        <span>${message}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                `;
+            };
+
+            const inputFilename = () => {
+                fileInputLabel.innerHTML = input.files[0].name;
+            };
+
+            const upload = (url) => {
+                if (!input.value) {
+                    showAlert("No File Selected", "warning");
+                    return;
+                }
+
+                const data = new FormData();
+                const request = new XMLHttpRequest();
+                request.responseType = "json";
+
+                alertWrapper.innerHTML = "";
+
+                input.disabled = true;
+                uploadBtn.classList.add("d-none");
+                loadingBtn.classList.remove("d-none");
+                cancelBtn.classList.remove("d-none");
+                progressWrapper.classList.remove("d-none");
+
+                const file = input.files[0];
+                const filename = file.name;
+                const filesize = file.size;
+
+                document.cookie = `filesize=${filesize}`;
+
+                data.append("file", file);
+
+                request.upload.addEventListener("progress", (e) => {
+                    const loaded = e.loaded;
+                    const total = e.total;
+
+                    let percentComplete = (loaded / total) * 100;
+
+                    progress.setAttribute(
+                        "style",
+                        `width: ${Math.floor(percentComplete)}%`
+                    );
+
+                    progressStatus.innerText = `${Math.floor(
+                        percentComplete
+                    )}% uploaded`;
+                });
+
+                request.addEventListener("load", (e) => {
+                    if (request.status == 200) {
+                        showAlert("File Uploaded", "success");
+                    } else {
+                        showAlert("Error Uploading File", "danger");
+                    }
+
+                    reset();
+                });
+
+                request.addEventListener("error", (e) => {
+                    reset();
+
+                    showAlert("Error Uploading File", "danger");
+                });
+
+                request.addEventListener("abort", (e) => {
+                    reset();
+                    showAlert("Upload Cancelled", "primary");
+                });
+
+                request.open("post", url);
+                request.send(data);
+
+                cancelBtn.addEventListener("click", () => {
+                    request.abort();
+                });
+            };
+
+            const reset = () => {
+                input.value = null;
+                input.disabled = false;
+                cancelBtn.classList.add("d-none");
+                loadingBtn.classList.add("d-none");
+                uploadBtn.classList.remove("d-none");
+
+                progressWrapper.classList.add("d-none");
+                progress.setAttribute("style", "width: 0%");
+                fileInputLabel.innerText = "Select File";
+            };
+        </script>
+    </body>
+</html>
+<!-- <form method="post" action="" class="form" enctype="multipart/form-data">
+    <div class="input-group mb-3">
+        <input type="file" class="form-control custom-file-input" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary upload-btn" type="submit">Upload Image</button>
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary download-btn" type="submit" disabled>Download Document</button>
+        </div>
+    </div>
+</form> -->
