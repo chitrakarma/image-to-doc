@@ -1,4 +1,4 @@
-# ITED
+# IED
 Minor Project - Conversion of Images to Editable Documents
 
 ### Languages
