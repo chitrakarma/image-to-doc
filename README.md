@@ -12,3 +12,4 @@ Minor Project - Conversion of Images to Editable Documents
   - JS ES5 - High-level, Programming Language
   - Bootstrap 4 - Open-Source CSS Front-End Framework
   - Git - Distributed VCS
+  - GitHub - For Collaboration, Bug-tracking, Feature-requests & Task-management
