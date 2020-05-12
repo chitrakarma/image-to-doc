@@ -10,6 +10,7 @@ Minor Project - Conversion of Images to Editable Documents
 ### Frameworks
   - Flask - Micro Web Framework Written In Python
   - Bootstrap 4 - Open-Source CSS Front-End Framework
+  - Slim - Fast & Lightweight Web-Components Microframework Written In JavaScript
 
 ### Project Management
   - `pip cli` - Package-Management System Written In Python
@@ -20,3 +21,6 @@ Minor Project - Conversion of Images to Editable Documents
   - Tesseract OCR - Open-Source OCR Engine
   - `pytesseract` - Python Wrapper For Tessract 
   - `python-docx` - Python Library to Create, Read & Write `docx` files
+  - Popper - Positioning Engine Written In JavaScript
+  - AJAX - Asynchronous JavaScript & XML
+  - PIL - Python Image Library
