@@ -13,7 +13,7 @@ Minor Project - Conversion of Images to Editable Documents
   - Slim - Fast & Lightweight Web-Components Microframework Written In JavaScript
 
 ### Project Management
-  - `pip cli` - Package-Management System Written In Python
+  - `pip` CLI - Package-Management System Written In Python
   - Git - Distributed VCS
   - GitHub - For Collaboration, Bug-tracking, Feature-requests & Task-management
   
@@ -26,3 +26,8 @@ Minor Project - Conversion of Images to Editable Documents
   - PIL - Python Image Library
   - OS - Python Library For Using OS Dependent Functionality
   - JSON - JavaScript Object Notation 
+  
+### Software
+  - OS - Windows 10, Version 1903 (OS Build 18362.778)
+  - Microsoft VS Code 1.44.2 - Text Editor
+  - GitHub Desktop 2.4.2
