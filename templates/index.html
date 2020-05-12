@@ -61,6 +61,20 @@
                         >
                             Cancel Upload
                         </button>
+
+                        <button
+                            class="btn btn-secondary d-none"
+                            id="download-btn"
+                            type="button"
+                        >
+                            <a
+                                href=""
+                                class="text-white download-link"
+                                download
+                            >
+                                Download Document
+                            </a>
+                        </button>
                     </div>
                     <div id="progress-wrapper" class="d-none">
                         <label id="progress-status">50% Uploaded</label>
@@ -91,6 +105,7 @@
             const uploadBtn = document.querySelector("#upload-btn");
             const loadingBtn = document.querySelector("#loading-btn");
             const cancelBtn = document.querySelector("#cancel-btn");
+            const downloadBtn = document.querySelector("#download-btn");
 
             const alertWrapper = document.querySelector("#alert-wrapper");
 
@@ -156,7 +171,14 @@
 
                 request.addEventListener("load", (e) => {
                     if (request.status == 200) {
-                        showAlert("File Uploaded", "success");
+                        showAlert(`${request.response.message}`, "success");
+                        downloadBtn.classList.remove("d-none");
+                        document
+                            .querySelector(".download-link")
+                            .setAttribute(
+                                "href",
+                                `../docs/${request.response.filename}.docx`
+                            );
                     } else {
                         showAlert("Error Uploading File", "danger");
                     }
@@ -197,14 +219,3 @@
         </script>
     </body>
 </html>
-<!-- <form method="post" action="" class="form" enctype="multipart/form-data">
-    <div class="input-group mb-3">
-        <input type="file" class="form-control custom-file-input" />
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary upload-btn" type="submit">Upload Image</button>
-        </div>
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary download-btn" type="submit" disabled>Download Document</button>
-        </div>
-    </div>
-</form> -->

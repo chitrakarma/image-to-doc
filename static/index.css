@@ -11,3 +11,7 @@ footer {
 .download-btn:hover {
     cursor: not-allowed;
 }
+
+.download-link:hover {
+    text-decoration: none;
+}
