@@ -24,3 +24,5 @@ Minor Project - Conversion of Images to Editable Documents
   - Popper - Positioning Engine Written In JavaScript
   - AJAX - Asynchronous JavaScript & XML
   - PIL - Python Image Library
+  - OS - Python Library For Using OS Dependent Functionality
+  - JSON - JavaScript Object Notation 
