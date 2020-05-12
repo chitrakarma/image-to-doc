@@ -16,7 +16,6 @@ def upload_file():
         # Converting image to text
         img = Image.open(file)
         text = tess.image_to_string(img)
-        print(text)
 
         # Creating docx file
         doc = Document()

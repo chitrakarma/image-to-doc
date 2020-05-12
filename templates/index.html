@@ -27,7 +27,8 @@
                                     for="file-input"
                                     id="file-input-label"
                                     class="custom-file-label"
-                                ></label>
+                                    >Select File</label
+                                >
                             </div>
                         </div>
 
@@ -79,6 +80,9 @@
             </div>
         </div>
 
+        <script src="../static/slim.min.js"></script>
+        <script src="../static/popper.min.js"></script>
+        <script src="../static/bootstrap.min.js"></script>
         <script>
             const progress = document.querySelector("#progress");
             const progressWrapper = document.querySelector("#progress-wrapper");
@@ -95,12 +99,12 @@
 
             const showAlert = (message, alert) => {
                 alertWrapper.innerHTML = `
-                    <div class="alert alert-${alert} alert-dismissible fade show" role="alert">
-                        <span>${message}</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <div class="alert alert-${alert} alert-dismissible fade show" role="alert">
+                    <span>${message}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 `;
             };
 
