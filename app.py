@@ -20,7 +20,7 @@ def upload_file():
         text = tess.image_to_string(img)
 
         # Saving file
-        filename = file.filename
+        filename = file.filename.split('.')[0]
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         # Creating docx file
@@ -29,7 +29,7 @@ def upload_file():
         doc.save(f"docs/{filename}.docx")
 
         res = make_response(jsonify(
-            {"message": f"{file.filename} uploaded", "filename": f"{file.filename}"}))
+            {"message": f"{file.filename} uploaded", "filename": f"{filename}"}))
         return res
 
     return render_template('index.html', name="Index")
