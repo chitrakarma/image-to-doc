@@ -19,17 +19,18 @@ def upload_file():
         img = Image.open(file)
         text = tess.image_to_string(img)
 
-        # Saving file
+        # Saving uploaded file
         filename = file.filename.split('.')[0]
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        # Creating docx file
+        # Creating .docx file
         doc = Document()
         para = doc.add_paragraph(text)
         doc.save(f"docs/{filename}.docx")
 
+        # Preparing a response
         res = make_response(jsonify(
-            {"message": f"{file.filename} uploaded", "filename": f"{filename}"}))
+            {"message": f"{file.filename} uploaded", "filename": f"{filename}", "text": text}))
         return res
 
     return render_template('index.html', name="Index")

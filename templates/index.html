@@ -40,6 +40,12 @@
                             Upload File
                         </button>
                         <button
+                            onclick="hardReset()"
+                            class="btn btn-secondary float-right"
+                        >
+                            Reset
+                        </button>
+                        <button
                             class="btn btn-secondary d-none"
                             id="loading-btn"
                             type="button"
@@ -77,7 +83,7 @@
                         </button>
                     </div>
                     <div id="progress-wrapper" class="d-none">
-                        <label id="progress-status">50% Uploaded</label>
+                        <label id="progress-status"></label>
                         <div class="progress mb-3">
                             <div
                                 id="progress"
@@ -90,6 +96,17 @@
                         </div>
                     </div>
                     <div id="alert-wrapper"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col">
+                <div class="row">
+                    <textarea
+                        id="text-output"
+                        class="w-100"
+                        rows="12"
+                    ></textarea>
                 </div>
             </div>
         </div>
@@ -111,6 +128,7 @@
 
             const input = document.querySelector("#file-input");
             const fileInputLabel = document.querySelector("#file-input-label");
+            const textOutput = document.querySelector("#text-output");
 
             const showAlert = (message, alert) => {
                 alertWrapper.innerHTML = `
@@ -173,6 +191,7 @@
                     if (request.status == 200) {
                         showAlert(`${request.response.message}`, "success");
                         downloadBtn.classList.remove("d-none");
+                        textOutput.innerText = request.response.text;
                         document
                             .querySelector(".download-link")
                             .setAttribute(
@@ -203,6 +222,21 @@
                 cancelBtn.addEventListener("click", () => {
                     request.abort();
                 });
+            };
+
+            const hardReset = () => {
+                input.value = null;
+                input.disabled = false;
+                cancelBtn.classList.add("d-none");
+                loadingBtn.classList.add("d-none");
+                uploadBtn.classList.remove("d-none");
+                textOutput.innerText = "";
+                alertWrapper.innerHTML = "";
+                downloadBtn.classList.add("d-none");
+
+                progressWrapper.classList.add("d-none");
+                progress.setAttribute("style", "width: 0%");
+                fileInputLabel.innerText = "Select File";
             };
 
             const reset = () => {
