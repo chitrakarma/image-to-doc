@@ -45,6 +45,7 @@ A simple project with a web interface for uploading image files, viewing the qui
   - OS - Windows 10, Version 1903 (OS Build 18362.778)
   - Microsoft VS Code 1.44.2 - Text Editor
   - GitHub Desktop 2.4.2
+  - Google Chrome Version 81.0.4044.138 - Web Browser
   
 ## Environment Setup
 All instructions are only for users running Windows 10 OS
