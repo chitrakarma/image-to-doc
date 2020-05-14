@@ -84,11 +84,6 @@ Visit http://localhost:5000 on your local machine to see the Web App
 
 ## Authors
 - **Chitransh S. Vishwakarma**
-- **Bhupendra S. Chaudhary**
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgements
-- **Prof. Uday Chaurasia** - Professor, DoCSE, UIT RGPV, Bhopal
-- **Prof. Sanjay Silakari** - Professor & HOD DoCSE, UIT RGPV, Bhopal
