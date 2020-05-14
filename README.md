@@ -50,8 +50,37 @@ A simple project with a web interface for uploading image files, viewing the qui
 ## Environment Setup
 All instructions are only for users running Windows 10 OS
 
+### Downloads
+- [Python 3](https://www.python.org/downloads/)
+- [Tesseract-OCR](https://github.com/UB-Mannheim/tesseract/wiki)
+- [GitHub Desktop](https://desktop.github.com/)
+- [Google Chrome](https://www.google.com/chrome/)
+- [Git Bash](https://git-scm.com/downloads)
+
+Follow the installation steps and make sure you add python to your path, more of which can be found [here](https://geek-university.com/python/add-python-to-the-windows-path/)
+
+### Installations
+
+  > C:\Users\Username> pip install tesseract    
+  > C:\Users\Username> pip install tesseract-ocr    
+  > C:\Users\Username> pip install virtualenv    
+
+This will install `virtualenv` `tesseract` & `tesseract-ocr` globally
+
 ## Run IED Locally
 Clone or Download the repository in your local machine before proceeding
+### Run Virtual Environment 
+    > C:\Users\Username\Downloads> cd image-to-doc    
+    > C:\Users\Username\Downloads\image-to-doc> activate.bat    
+    > (venv) C:\Users\Username\Downloads\image-to-doc>    
+### Installs 
+    > (venv) C:\Users\Username> pip install Flask     
+    > (venv) C:\Users\Username> pip install pytesseract    
+    > (venv) C:\Users\Username> pip install python-docx      
+### Run App
+    > (venv) C:\Users\Username> start.bat  
+
+Visit http://localhost:5000 on your local machine to see the Web App
 
 ## Authors
 - **Chitransh S. Vishwakarma**
